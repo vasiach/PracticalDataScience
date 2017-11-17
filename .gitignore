@@ -1,5 +1,3 @@
-#while(True):
- #   try:
-  #      r_next = requests.get("https://www.gutenberg.org"+next_page["href"]+"&query=charles+dickens")
-   # except requests.exceptions.RequestException as rex:
-    #    print("Unable to get {article_url} reason {rex}")
+.idea
+*.pyc
+.ipynb_checkpoints
