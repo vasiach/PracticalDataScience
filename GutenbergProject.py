@@ -1,6 +1,6 @@
 import requests
-import re
 from bs4 import BeautifulSoup
+
 
 def find_titles(url):
     r = requests.get("https://www.gutenberg.org/"+url)
@@ -54,7 +54,7 @@ def find_titles(url):
                     url = i["href"]
     return titles
 
-url="ebooks/search/?&query=charles+dickens"
-titles = find_titles(url)
-for i, title in enumerate(titles):
+url_link = "ebooks/search/?&query=charles+dickens"
+books = find_titles(url_link)
+for i, title in enumerate(books):
     print(i, title)

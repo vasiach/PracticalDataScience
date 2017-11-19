@@ -14,7 +14,7 @@ def get_reply_percentage(config, username, max_tweets=100):
     for status in tweepy.Cursor(api.user_timeline, id=username).items(max_tweets):
         tweets += 1
         if status.in_reply_to_status_id is not None:
-            print( status.text)
+            print(status.text)
             reply_status += 1
     return round(((reply_status / tweets) * 100), 1)
 
