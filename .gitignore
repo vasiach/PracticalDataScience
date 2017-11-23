@@ -1,4 +1,5 @@
-.idea/workspace.xml
-.idea/*
+.idea
 *.pyc
-.ipynb_checkpoints
+.ipynb_checkpoints/
+starting_to_crawl.ipynb
+Assignment 1.zip

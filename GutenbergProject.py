@@ -3,29 +3,7 @@ from bs4 import BeautifulSoup
 
 
 def find_titles(url):
-    r = requests.get("https://www.gutenberg.org/"+url)
-    html = r.content
-    soup = BeautifulSoup(html, 'html.parser')
-
-    review_results = soup.find_all("li", {"class": {"booklink"}})
-
-    titles = []
-    for result in review_results:
-        if result.find("span", class_="subtitle") is not None:
-            author = result.find('span', class_="subtitle").get_text()
-            if "Charles Dickens" in author:
-                for x in result.find_all(class_="title"):
-                    if x.get_text() not in titles:
-                        titles.append(x.get_text())
-
-    statuslinks = soup.find_all("li", {"class": {"statusline"}})
-
-    for link in statuslinks:
-        next_page = link.find_all("a", {"title": "Go to the next page of results."}, href=True)
-
-    for i in next_page:
-        url = i["href"]
-
+    titles=[]
     while True:
         try:
             r = requests.get("https://www.gutenberg.org" + url)
@@ -41,8 +19,7 @@ def find_titles(url):
                     author = result.find('span', class_="subtitle").get_text()
                     if "Charles Dickens" in author:
                         for x in result.find_all(class_="title"):
-                            if x.get_text() not in titles:
-                                titles.append(x.get_text())
+                            titles.append(x.get_text())
 
             statuslinks = soup.find_all("li", {"class": {"statusline"}})
             for link in statuslinks:
@@ -54,7 +31,8 @@ def find_titles(url):
                     url = i["href"]
     return titles
 
-url_link = "ebooks/search/?&query=charles+dickens"
-books = find_titles(url_link)
+
+url_link = "/ebooks/search/?&query=charles+dickens"
+books = set(find_titles(url_link))
 for i, title in enumerate(books):
     print(i, title)
