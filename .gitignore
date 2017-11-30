@@ -3,3 +3,6 @@
 .ipynb_checkpoints/
 starting_to_crawl.ipynb
 Assignment 1.zip
+intro_to_pandas.ipynb
+yelp_academic_dataset_business.json
+data/*
